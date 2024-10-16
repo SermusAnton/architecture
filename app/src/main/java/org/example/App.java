@@ -1,11 +1,9 @@
 package org.example;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
-
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        var quadraticEquation = new QuadraticEquation();
+        var result = quadraticEquation.solve(1d, -5d, 6d, QuadraticEquation.EPSILON);
+        System.out.println(result);
     }
 }
