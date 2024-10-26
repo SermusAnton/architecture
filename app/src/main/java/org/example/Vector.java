@@ -1,19 +1,22 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Vector {
 
-    private final int x;
-    private final int y;
+    private final int[] coordinates;
 
-    public Vector(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Vector(int... coordinates) {
+        this.coordinates = coordinates;
     }
 
     public static Vector plus(Vector first, Vector second) {
-        return new Vector(first.x + second.x, first.y + second.y);
+        var newCoordinates = new int[first.coordinates.length];
+        for (int i = 0; i < first.coordinates.length; i++) {
+            newCoordinates[i] = first.coordinates[i] + second.coordinates[i];
+        }
+        return new Vector(newCoordinates);
     }
 
     @Override
@@ -25,19 +28,18 @@ public class Vector {
             return false;
         }
         Vector vector = (Vector) o;
-        return x == vector.x && y == vector.y;
+        return Objects.deepEquals(coordinates, vector.coordinates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Arrays.hashCode(coordinates);
     }
 
     @Override
     public String toString() {
         return "Vector{" +
-            "x=" + x +
-            ", y=" + y +
+            "coordinates=" + Arrays.toString(coordinates) +
             '}';
     }
 }
