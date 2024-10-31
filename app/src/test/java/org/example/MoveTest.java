@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.object.MovingObject;
+import org.example.command.Move;
 import org.example.exception.ChangeLocationException;
 import org.example.exception.ReadLocationException;
 import org.example.exception.ReadVelocityException;

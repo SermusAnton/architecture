@@ -1,5 +1,6 @@
-package org.example;
+package org.example.command;
 
+import org.example.object.MovingObject;
 import org.example.exception.ChangeLocationException;
 import org.example.exception.ReadLocationException;
 import org.example.exception.ReadVelocityException;
@@ -7,7 +8,7 @@ import org.example.value.Vector;
 
 import java.util.Objects;
 
-public class Move {
+public class Move implements Command {
 
     private final MovingObject movingObject;
 
@@ -15,6 +16,7 @@ public class Move {
         this.movingObject = movingObject;
     }
 
+    @Override
     public void execute() {
         if (Objects.isNull(movingObject.getLocation())) {
             throw new ReadLocationException();
