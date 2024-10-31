@@ -3,6 +3,7 @@ package org.example;
 import org.example.exception.ChangeLocationException;
 import org.example.exception.ReadLocationException;
 import org.example.exception.ReadVelocityException;
+import org.example.value.Vector;
 
 import java.util.Objects;
 

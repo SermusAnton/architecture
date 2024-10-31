@@ -3,6 +3,7 @@ package org.example;
 import org.example.exception.ChangeAngleException;
 import org.example.exception.ReadAngelVelocity;
 import org.example.exception.ReadAngleException;
+import org.example.value.Angle;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
