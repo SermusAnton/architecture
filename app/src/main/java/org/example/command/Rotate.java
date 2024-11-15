@@ -1,6 +1,6 @@
 package org.example.command;
 
-import org.example.object.RotatingObject;
+import org.example.objects.RotatingObject;
 import org.example.exception.ChangeAngleException;
 import org.example.exception.ReadAngelVelocity;
 import org.example.exception.ReadAngleException;

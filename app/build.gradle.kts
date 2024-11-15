@@ -16,15 +16,18 @@ repositories {
 }
 
 dependencies {
+    // This dependency is used by the application.
+    implementation(libs.guava)
+    implementation("org.slf4j:slf4j-api:1.7.36")
+    implementation("ch.qos.logback:logback-core:1.5.12")
+
     // Use JUnit Jupiter for testing.
     testImplementation("org.mockito:mockito-junit-jupiter:5.14.2")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.2")
     testImplementation("org.mockito:mockito-core:5.14.2")
+    testImplementation("org.simplify4u:slf4j-mock:2.4.0")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    // This dependency is used by the application.
-    implementation(libs.guava)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

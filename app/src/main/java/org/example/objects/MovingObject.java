@@ -1,4 +1,4 @@
-package org.example.object;
+package org.example.objects;
 
 import org.example.value.Vector;
 
