@@ -1,8 +1,11 @@
 package org.example;
 
+import org.example.objects.MovingObject;
+import org.example.command.Move;
 import org.example.exception.ChangeLocationException;
 import org.example.exception.ReadLocationException;
 import org.example.exception.ReadVelocityException;
+import org.example.value.Vector;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

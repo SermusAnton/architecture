@@ -1,4 +1,6 @@
-package org.example;
+package org.example.objects;
+
+import org.example.value.Angle;
 
 public interface RotatingObject {
     Angle getAngle();
