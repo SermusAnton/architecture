@@ -19,6 +19,14 @@ public class Vector {
         return new Vector(newCoordinates);
     }
 
+    public static Vector minus(Vector first, Vector second) {
+        var newCoordinates = new int[first.coordinates.length];
+        for (int i = 0; i < first.coordinates.length; i++) {
+            newCoordinates[i] = first.coordinates[i] - second.coordinates[i];
+        }
+        return new Vector(newCoordinates);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
