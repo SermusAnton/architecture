@@ -20,6 +20,7 @@ dependencies {
     implementation(libs.guava)
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("ch.qos.logback:logback-core:1.5.12")
+    implementation("org.glassfish.jaxb:codemodel:4.0.5")
 
     // Use JUnit Jupiter for testing.
     testImplementation("org.mockito:mockito-junit-jupiter:5.14.2")
