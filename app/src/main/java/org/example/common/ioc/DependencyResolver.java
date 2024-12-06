@@ -1,4 +1,4 @@
-package org.example.common;
+package org.example.common.ioc;
 
 import java.util.List;
 import java.util.Map;

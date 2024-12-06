@@ -1,4 +1,4 @@
-package org.example.common;
+package org.example.common.ioc;
 
 import org.example.command.Command;
 
@@ -17,9 +17,9 @@ public class Scope {
 
     static {
         defaultStore.put("Scope.New",
-            args -> create((String) args.get(0)));
+            args -> Scope.create((String) args.get(0)));
         defaultStore.put("Scope.Current",
-            args -> setCurrentScopeId((String) args.get(0)));
+            args -> Scope.setCurrentId((String) args.get(0)));
         defaultStore.put("IoC.Register",
             args -> defaultStore.put((String) args.get(0), (Function<List<Object>, Object>) args.get(1)));
     }
@@ -33,7 +33,7 @@ public class Scope {
         return () -> resolvers.put(id, new DependencyResolver(store));
     }
 
-    public static Command setCurrentScopeId(String id) {
+    public static Command setCurrentId(String id) {
         return () -> currentScope.set(id);
     }
 
