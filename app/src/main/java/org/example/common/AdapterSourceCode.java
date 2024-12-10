@@ -16,7 +16,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Map;
 
 public class AdapterSourceCode {
@@ -41,7 +40,7 @@ public class AdapterSourceCode {
 
     private static final String SPACESHIP_OPERATIONS = "Spaceship.Operations";
 
-    private static final String OTHER_OPERATIONS = "Adapter.%s.Operations.%s";
+
 
     public AdapterSourceCode(Class<?> clazz) {
         this.clazz = clazz;
