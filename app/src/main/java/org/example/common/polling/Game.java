@@ -1,4 +1,4 @@
-package org.example;
+package org.example.common.polling;
 
 import org.example.command.Command;
 
