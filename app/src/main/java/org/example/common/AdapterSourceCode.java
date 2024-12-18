@@ -40,8 +40,6 @@ public class AdapterSourceCode {
 
     private static final String SPACESHIP_OPERATIONS = "Spaceship.Operations";
 
-
-
     public AdapterSourceCode(Class<?> clazz) {
         this.clazz = clazz;
         this.qualifiedClassName = getPackageName() + "." + getName();
