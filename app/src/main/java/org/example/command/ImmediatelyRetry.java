@@ -1,6 +1,6 @@
 package org.example.command;
 
-import org.example.Game;
+import org.example.common.polling.Game;
 
 public class ImmediatelyRetry implements Command {
 

@@ -43,9 +43,9 @@ class AdapterSourceCodeTest {
         assertTrue(adapterSourceCode.getCode().contains("public Vector getVelocity()"));
         assertTrue(adapterSourceCode.getCode()
             .contains("return IoC.<Vector>resolve(\"Spaceship.Operations.MovingObject:velocity.get\", gameObject);"));
-        assertTrue(adapterSourceCode.getCode().contains("public void setLocation(Vector arg0)"));
+        assertTrue(adapterSourceCode.getCode().contains("public void setLocation(Vector newLocation"));
         assertTrue(adapterSourceCode.getCode()
-            .contains("Command cmd = IoC.resolve(\"Spaceship.Operations.MovingObject:location.set\", gameObject, arg0);"));
+            .contains("Command cmd = IoC.resolve(\"Spaceship.Operations.MovingObject:location.set\", gameObject, newLocation);"));
     }
 
     // п.2 Адаптер и мост
