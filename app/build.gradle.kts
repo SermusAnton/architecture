@@ -15,12 +15,13 @@ dependencies {
     // spring
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
-
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
 
     // This dependency is used by the application.
     implementation(libs.guava)
     implementation("org.glassfish.jaxb:codemodel:4.0.5")
+    implementation("org.bitbucket.b_c:jose4j:0.9.6")
 
     // Use JUnit Jupiter for testing.
     testImplementation("org.mockito:mockito-junit-jupiter:5.14.2")
