@@ -1,0 +1,331 @@
+openapi: 3.0.3
+info:
+  title: Battle Assistant
+  description: >-
+    This is a sample Battle Assistant Service based on the OpenAPI 3.0
+    specification.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://battle.com/api/v1
+tags:
+  - name: battle
+    description: Access to information about battles
+    externalDocs:
+      description: Find out more
+      url: https://battle.com/api/v1
+paths:
+  /battle:
+    post:
+      tags:
+        - battle
+      summary: Add a new battle
+      description: Add a new battle
+      operationId: addBattle
+      requestBody:
+        description: Create a new battle
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Battle'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Battle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Battle'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Battle'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Battle'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:battles
+            - read:battles
+    get:
+      tags:
+        - battle
+      summary: Finds all battles
+      description: Returns a array battles
+      operationId: getBattles
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Battle'          
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Battle'
+        '400':
+          description: Invalid status value
+      security:
+        - petstore_auth:
+            - write:battles
+            - read:battles
+  /battle/{battleId}:
+    get:
+      tags:
+        - battle
+      summary: Find battle by ID
+      description: Returns a single battle
+      operationId: getBattleById
+      parameters:
+        - name: battleId
+          in: path
+          description: ID of battle to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Battle'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Battle'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Battle not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:battles
+            - read:battles
+    delete:
+      tags:
+        - battle
+      summary: Deletes a battle
+      description: delete a battle
+      operationId: deleteBattle
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: battleId
+          in: path
+          description: Battle id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid battle value
+      security:
+        - petstore_auth:
+            - write:battles
+            - read:battle
+  /battle/{battleId}/user/{participantId}:
+    post:
+      tags:
+        - battle
+      summary: Invite a participant to the battle
+      description: Invite a participant to the battle
+      operationId: addParticipant
+      parameters:
+        - name: battleId
+          in: path
+          description: ID of battle to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: participantId
+          in: path
+          description: ID of battle to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Battle'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Battle'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - write:battles
+            - read:battles
+  /battle/{battleId}/result:  
+    get:
+      tags:
+        - battle
+      summary: Find result of battle by ID
+      description: Returns a single result
+      operationId: getResultByBattleId
+      parameters:
+        - name: battleId
+          in: path
+          description: ID of battle 
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Result'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Result not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:battles
+            - read:battles
+            
+components:
+  schemas:
+    Battle:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        conditions:
+          type: array
+          xml:
+            name: conditions
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/Condition'
+        startDateTime:
+          type: string
+          format: date-time
+        invitedParticipants:
+          type: array
+          xml:
+            name: invitedParticipants
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/User'
+        tournamentId:
+          type: integer
+          format: int64
+          example: 10
+        approvedParticipants:
+          type: array
+          xml:
+            name: approvedParticipants
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/User'
+      xml:
+        name: battle
+    Condition:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      xml:
+        name: condition
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      xml:
+        name: user
+    Result:
+      type: object
+      properties:
+        place:
+          type: array
+          items:
+            $ref: '#/components/schemas/Place'
+      xml:
+        name: result
+    Place:
+      type: object
+      properties:
+        place:
+          type: integer
+          format: int32
+        participant:
+          xml:
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/User'
+        points:
+          type: integer
+          format: int32
+      xml:
+        name: place
+  requestBodies:
+    Battle:
+      description: Battle object that needs to be added
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Battle'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Battle'
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://battle.com/oauth/authorize
+          scopes:
+            write:battles: modify battles
+            read:battles: read your battles
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
