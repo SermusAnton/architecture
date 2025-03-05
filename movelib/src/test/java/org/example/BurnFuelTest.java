@@ -39,6 +39,8 @@ class BurnFuelTest {
 
         var expectedReserve = new Fuel(5);
         verify(fuelBurningObject, times(1)).setFuelReserve(expectedReserve);
+
+
     }
 
     // п.2 Команда
