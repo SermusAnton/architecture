@@ -57,8 +57,20 @@ tasks.test {
 tasks.jacocoTestReport {
     dependsOn(tasks.test) // tests are required to run before generating the report
     reports {
-        xml.required = false
+        xml.required = true
         csv.required = true
         html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
     }
+    classDirectories.setFrom(files(classDirectories.files.map {
+        fileTree(it) {
+            setExcludes(listOf(
+                "**/org/example/dto/*.class",
+                "**/org/example/value/*.class",
+                "**/org/example/common/polling/Game.class",
+                "**/org/example/auth/*.class",
+                "**/org/example/controller/*.class",
+                "**/org/example/configuration/*.class"
+            ))
+        }
+    }))
 }

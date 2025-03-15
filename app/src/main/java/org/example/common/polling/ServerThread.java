@@ -3,6 +3,8 @@ package org.example.common.polling;
 import org.example.command.Command;
 import org.example.handler.ExceptionHandler;
 
+import java.util.Objects;
+
 public class ServerThread {
 
     private final SoftStop softStop;
@@ -36,14 +38,17 @@ public class ServerThread {
             } catch (InterruptedException exception) {
                 Thread.currentThread().interrupt();
             } catch (RuntimeException exception) {
-                assert command != null;
-                ExceptionHandler.create(command, exception).execute();
+                if (Objects.nonNull(command)) {
+                    ExceptionHandler.create(command, exception).execute();
+                } else {
+                    ExceptionHandler.create(() -> {}, exception).execute();
+                }
             }
         };
         thread = new Thread(
             () -> {
                 before.run();
-                while (!stop) {
+                while (!stop && !Thread.interrupted()) {
                     behaviour.run();
                 }
                 after.run();
