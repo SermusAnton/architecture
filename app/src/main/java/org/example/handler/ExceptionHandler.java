@@ -9,7 +9,7 @@ import java.util.function.BiFunction;
 public class ExceptionHandler {
 
     private static final Map<CommandRuntimeExceptionKey, BiFunction<Command, Exception, Command>> store = new HashMap<>();
-    private static BiFunction<Command, Exception, Command> defaultCommand;
+    private static final BiFunction<Command, Exception, Command> defaultCommand = (c, e) -> () -> {};
 
     public static Command create(Command command, Exception exception) {
         var classCommand = command.getClass().getName();

@@ -10,11 +10,9 @@ public class ServerThreadWithState {
 
     private final Receiver receiver;
 
-    private Runnable before = () -> {
-    };
+    private Runnable before = () -> {};
 
-    private Runnable after = () -> {
-    };
+    private Runnable after = () -> {};
 
     public void setBefore(Runnable before) {
         this.before = before;

@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.0"
     id("io.spring.dependency-management") version "1.1.6"
+    jacoco
 }
 
 group = "com.example"
@@ -43,4 +44,33 @@ java {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.register("run") {
+    dependsOn(gradle.includedBuild("movelib").task(":app:run"))
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+    reports {
+        xml.required = true
+        csv.required = true
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
+    classDirectories.setFrom(files(classDirectories.files.map {
+        fileTree(it) {
+            setExcludes(listOf(
+                "**/org/example/dto/*.class",
+                "**/org/example/value/*.class",
+                "**/org/example/common/polling/Game.class",
+                "**/org/example/auth/*.class",
+                "**/org/example/controller/*.class",
+                "**/org/example/configuration/*.class"
+            ))
+        }
+    }))
 }

@@ -48,8 +48,4 @@ public class Scope {
         }
         return "root";
     }
-
-    public void unload() {
-        currentScope.remove();
-    }
 }

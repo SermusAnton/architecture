@@ -47,13 +47,6 @@ public class InMemoryCompile {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException("Class not found", e);
             }
-
-//            Class<?> clazz = classLoader.loadClass(qualifiedClassName);
-//            Constructor<?> ctor = clazz.getConstructor(Map.class);
-//            var gameObject = new HashMap<String, Object>();
-//            var object = (MovingObject) ctor.newInstance(gameObject);
-//
-//            var a = "";
         }
         throw new IllegalArgumentException(String.format("Error load class: %s", qualifiedClassName));
     }

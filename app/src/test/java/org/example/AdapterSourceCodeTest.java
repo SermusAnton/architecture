@@ -1,13 +1,11 @@
 package org.example;
 
 import org.example.command.Command;
-import org.example.command.Move;
 import org.example.common.AdapterSourceCode;
 import org.example.common.inmemorycompile.InMemoryCompile;
 import org.example.common.ioc.DependencyResolver;
 import org.example.common.ioc.IoC;
 import org.example.objects.MovingObject;
-import org.example.objects.RotatingObject;
 import org.example.value.Vector;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
